@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Layout.HomePage">
+   <children>
+      <Label layoutX="40.0" layoutY="147.0" text="Blood Type Wanted" />
+      <CheckBox layoutX="193.0" layoutY="147.0" mnemonicParsing="false" text="B+" />
+      <CheckBox layoutX="250.0" layoutY="147.0" mnemonicParsing="false" text="O+" />
+      <CheckBox layoutX="306.0" layoutY="147.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="56.0" text="A+" />
+      <CheckBox layoutX="362.0" layoutY="147.0" mnemonicParsing="false" text="AB+" />
+      <CheckBox layoutX="427.0" layoutY="147.0" mnemonicParsing="false" text="A-" />
+      <CheckBox layoutX="479.0" layoutY="147.0" mnemonicParsing="false" text="O-" />
+      <CheckBox layoutX="540.0" layoutY="147.0" mnemonicParsing="false" text="B-" />
+      <CheckBox layoutX="193.0" layoutY="179.0" mnemonicParsing="false" text="AB-" />
+   </children>
+</AnchorPane>
