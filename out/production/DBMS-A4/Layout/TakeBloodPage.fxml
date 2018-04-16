@@ -11,25 +11,25 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TakeBloodPageController">
    <children>
       <Label layoutX="40.0" layoutY="147.0" text="Blood Type Wanted" />
-      <CheckBox layoutX="193.0" layoutY="147.0" mnemonicParsing="false" text="B+" />
-      <CheckBox layoutX="250.0" layoutY="147.0" mnemonicParsing="false" text="O+" />
-      <CheckBox layoutX="306.0" layoutY="147.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="56.0" text="A+" />
-      <CheckBox layoutX="362.0" layoutY="147.0" mnemonicParsing="false" text="AB+" />
-      <CheckBox layoutX="427.0" layoutY="147.0" mnemonicParsing="false" text="A-" />
-      <CheckBox layoutX="479.0" layoutY="147.0" mnemonicParsing="false" text="O-" />
-      <CheckBox layoutX="540.0" layoutY="147.0" mnemonicParsing="false" text="B-" />
-      <CheckBox layoutX="193.0" layoutY="179.0" mnemonicParsing="false" text="AB-" />
+      <CheckBox fx:id="BP" layoutX="193.0" layoutY="147.0" mnemonicParsing="false" text="B+" />
+      <CheckBox fx:id="OP" layoutX="250.0" layoutY="147.0" mnemonicParsing="false" text="O+" />
+      <CheckBox fx:id="AP" layoutX="306.0" layoutY="147.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="56.0" text="A+" />
+      <CheckBox fx:id="ABP" layoutX="362.0" layoutY="147.0" mnemonicParsing="false" text="AB+" />
+      <CheckBox fx:id="AN" layoutX="427.0" layoutY="147.0" mnemonicParsing="false" text="A-" />
+      <CheckBox fx:id="ON" layoutX="479.0" layoutY="147.0" mnemonicParsing="false" text="O-" />
+      <CheckBox fx:id="BN" layoutX="540.0" layoutY="147.0" mnemonicParsing="false" text="B-" />
+      <CheckBox fx:id="ABN" layoutX="193.0" layoutY="179.0" mnemonicParsing="false" text="AB-" />
       <Slider fx:id="bloodAgeSlider" layoutX="275.0" layoutY="104.0" prefHeight="18.0" prefWidth="302.0" showTickLabels="true" showTickMarks="true" />
       <Label layoutX="37.0" layoutY="104.0" text="Days Old (Less Than)" />
       <Label layoutX="89.0" layoutY="230.0" text="Centres" />
-      <CheckBox layoutX="194.0" layoutY="230.0" mnemonicParsing="false" text="A" />
-      <CheckBox layoutX="240.0" layoutY="230.0" mnemonicParsing="false" text="B" />
-      <CheckBox layoutX="288.0" layoutY="230.0" mnemonicParsing="false" text="C" />
+      <CheckBox fx:id="CentreA" layoutX="194.0" layoutY="230.0" mnemonicParsing="false" text="A" />
+      <CheckBox fx:id="CentreB" layoutX="240.0" layoutY="230.0" mnemonicParsing="false" text="B" />
+      <CheckBox fx:id="CentreC" layoutX="288.0" layoutY="230.0" mnemonicParsing="false" text="C" />
       <Label layoutX="80.0" layoutY="70.0" text="Donor Gender" />
       <RadioButton fx:id="genderMale" layoutX="271.0" layoutY="70.0" mnemonicParsing="false" text="Male" />
       <RadioButton fx:id="genderFemale" layoutX="394.0" layoutY="70.0" mnemonicParsing="false" text="Female" />
       <Label layoutX="91.0" layoutY="40.0" text="Donor Age" />
       <RangeSlider fx:id="donorAge" layoutX="322.0" layoutY="24.0" max="40.0" min="18.0" prefHeight="73.0" prefWidth="255.0" showTickLabels="true" showTickMarks="true" />
-      <Button layoutX="277.0" layoutY="295.0" mnemonicParsing="false" text="Submit" />
+      <Button fx:id="Submit" layoutX="277.0" layoutY="295.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Submit" />
    </children>
 </AnchorPane>

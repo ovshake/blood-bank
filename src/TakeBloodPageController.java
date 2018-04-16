@@ -25,9 +25,11 @@ public class TakeBloodPageController {
     public CheckBox CentreA;
     public CheckBox CentreB;
     public CheckBox CentreC;
+    public Button Submit;
 
 
     public void onClickSubmit(ActionEvent actionEvent) {
+
     }
 
 
