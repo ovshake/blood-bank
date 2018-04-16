@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Layout/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Layout/LandingPage.fxml"));
         primaryStage.setTitle("Hello! Welcome!");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 700, 500));
