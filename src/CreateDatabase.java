@@ -21,10 +21,11 @@ public class CreateDatabase {
         }
     }
 
-    public void getDataFromDB(){
+    public ResultSet getDataFromDB(String query){
         try {
-            String query = "SELECT * FROM blood";
+
             resultSet = statement.executeQuery(query);
+            ResultSet returnResultSet = resultSet;
             System.out.println("RECORDS FROM DATABASE");
             while(resultSet.next()){
                 String donorID = resultSet.getString("Donor ID");
@@ -34,9 +35,14 @@ public class CreateDatabase {
                 System.out.println(donorID + " " + Centre + " "+bloodtype + " " + gender);
 
             }
+            return returnResultSet;
+
         }
         catch (Exception e){
             System.out.println("EXCEPTION IS "+e);
+            return null;
         }
     }
+
+
 }

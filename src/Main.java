@@ -18,6 +18,6 @@ public class Main extends Application {
 
 //        launch(args);
         CreateDatabase db = new CreateDatabase();
-        db.getDataFromDB();
+        db.getDataFromDB("Hello!");
     }
 }

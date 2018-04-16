@@ -1,9 +1,12 @@
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Slider;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import org.controlsfx.control.RangeSlider;
+
+import java.sql.ResultSet;
 
 public class TakeBloodPageController {
 
@@ -29,6 +32,21 @@ public class TakeBloodPageController {
 
 
     public void onClickSubmit(ActionEvent actionEvent) {
+        CreateDatabase db = new CreateDatabase();
+
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Layout/Result.fxml"));
+            Parent root = (Parent) loader.load();
+            ResultController resultController = loader.getController();
+            resultController.setLabelText("Result from the query");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (Exception e){
+            System.out.println("Exception is "+e);
+        }
 
     }
 
