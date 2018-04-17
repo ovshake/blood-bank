@@ -5,14 +5,12 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="573.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DonateBloodPage">
    <children>
       <Label layoutX="36.0" layoutY="52.0" text="Donor Age" />
-      <Slider fx:id="AgeSelector" layoutX="229.0" layoutY="40.0" majorTickUnit="1.0" max="40.0" min="18.0" prefHeight="45.0" prefWidth="238.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
       <RadioButton fx:id="genderMale" layoutX="262.0" layoutY="85.0" mnemonicParsing="false" text="Male" />
       <RadioButton fx:id="genderFemale" layoutX="381.0" layoutY="85.0" mnemonicParsing="false" text="Female" />
       <Label layoutX="48.0" layoutY="85.0" text="Gender" />
@@ -24,7 +22,6 @@
       <Label layoutX="53.0" layoutY="202.0" text="Name" />
       <TextField fx:id="nameField" layoutX="239.0" layoutY="197.0" />
       <Label layoutX="32.0" layoutY="243.0" text="Quantity (in L)" />
-      <Slider fx:id="quantitySelector" layoutX="229.0" layoutY="242.0" majorTickUnit="1.0" max="3.0" min="1.0" prefHeight="45.0" prefWidth="238.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
        <RadioButton fx:id="BP" layoutX="193.0" layoutY="299.0" mnemonicParsing="false" text="B+" />
        <RadioButton fx:id="OP" layoutX="248.0" layoutY="299.0" mnemonicParsing="false" text="O+" />
        <RadioButton fx:id="AP" layoutX="305.0" layoutY="299.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="56.0" text="A+" />
@@ -37,8 +34,10 @@
       <Label layoutX="56.0" layoutY="338.0" text="Price" />
       <TextField fx:id="priceField" layoutX="255.0" layoutY="333.0" />
       <RadioButton fx:id="newUser" layoutX="184.0" layoutY="384.0" mnemonicParsing="false" text="New User" />
-      <RadioButton fx:id="existingUser" layoutX="363.0" layoutY="384.0" mnemonicParsing="false"  text="Existing User" />
+      <RadioButton fx:id="existingUser" layoutX="363.0" layoutY="384.0" mnemonicParsing="false" text="Existing User" />
       <Label layoutX="12.0" layoutY="426.0" text="Donor ID (If Existing User)" />
       <TextField fx:id="donorID" layoutX="239.0" layoutY="421.0" />
+      <TextField fx:id="donorAge" layoutX="239.0" layoutY="47.0" />
+      <TextField fx:id="quantityField" layoutX="255.0" layoutY="238.0" />
    </children>
 </AnchorPane>

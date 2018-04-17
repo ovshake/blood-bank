@@ -29,6 +29,12 @@ public class DonateBloodPage {
     public void initialize_toggle_button(){
         ToggleGroup group  = new ToggleGroup();
         ToggleGroup group1 = new ToggleGroup();
+        ToggleGroup group3 = new ToggleGroup();
+        ToggleGroup g4 = new ToggleGroup();
+        newUser.setToggleGroup(g4);
+        existingUser.setToggleGroup(g4);
+        genderFemale.setToggleGroup(group3);
+        genderMale.setToggleGroup(group3);
         newUser.setToggleGroup(group1);
         existingUser.setToggleGroup(group1);
         RadioButton[] button = {BP,ABN,OP,ABP,AN,ON,BN,AP};

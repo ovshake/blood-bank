@@ -6,8 +6,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LandingPage">
    <children>
-      <RadioButton fx:id="donateBlood" layoutX="130.0" layoutY="156.0" mnemonicParsing="false" text="Donate Blood" />
-      <RadioButton fx:id="receiveBlood" layoutX="367.0" layoutY="156.0" mnemonicParsing="false" text="Receive Blood" />
+      <RadioButton fx:id="donateBlood" layoutX="83.0" layoutY="156.0" mnemonicParsing="false" text="Donate Blood" />
+      <RadioButton fx:id="receiveBlood" layoutX="248.0" layoutY="156.0" mnemonicParsing="false" text="Receive Blood" />
       <Button fx:id="submit" layoutX="278.0" layoutY="267.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Go!" />
+      <RadioButton fx:id="adminButton" layoutX="412.0" layoutY="156.0" mnemonicParsing="false" text="Admin Page" />
    </children>
 </AnchorPane>
