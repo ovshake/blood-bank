@@ -20,8 +20,11 @@ public class LandingPage {
     public void onClickSubmit(ActionEvent actionEvent) throws IOException {
         if(donateBlood.isSelected()){
             Stage stageTheLabelBelongs = (Stage) submit.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("Layout/DonateBloodPage.fxml"));
-            stageTheLabelBelongs.setTitle("Student Menu");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Layout/DonateBloodPage.fxml"));
+            Parent root = (Parent) loader.load();
+            DonateBloodPage donateBloodPage = loader.getController();
+            donateBloodPage.initialize_toggle_button();
+            stageTheLabelBelongs.setTitle("Donation Page");
             stageTheLabelBelongs.setScene(new Scene(root, 700, 500));
             stageTheLabelBelongs.show();
         }

@@ -16,8 +16,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-//        launch(args);
-        CreateDatabase db = new CreateDatabase();
-        db.getDataFromDB("Hello!");
+        launch(args);
+
     }
 }
