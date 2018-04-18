@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.util.Callback;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -50,15 +51,24 @@ public class SimpleQuery {
 
 
         //do whatever you want with this query string
+
         ResultSet rs = db.getDataFromDB(query);
-        buildData(rs);
+
+
+        // It creates and displays the table
+        JTable table = new JTable(buildTableModel(rs));
+
+        // Closes the Connection
+
+        JOptionPane.showMessageDialog(null, new JScrollPane(table));
+
 
     }
 
     public void intialise_combo_box(){
-        String[] listAll = {"Donor","Recipient","Centre","Hospital"};
-        String[] avalaibleB = {"A+","B+","AB-","AB+","O+","O-","B-","A-"};
-        String[] hospitalList = {"Hospital A","Hospital B","Hospital C"};
+        String[] listAll = {null,"Donor","Recipient","Centre","Hospital"};
+        String[] avalaibleB = {null,"A+","B+","AB-","AB+","O+","O-","B-","A-"};
+        String[] hospitalList = {null,"Saroj Hospital","Max Hospital"};
         for(String a : listAll)
             listOfAll.getItems().add(a);
         for(String a : avalaibleB)
@@ -72,50 +82,32 @@ public class SimpleQuery {
 
 
 
-    public void buildData(ResultSet rs){
-
-        ObservableList<ObservableList> data = FXCollections.observableArrayList();
-        try{
 
 
-            /**********************************
-             * TABLE COLUMN ADDED DYNAMICALLY *
-             **********************************/
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
-                //We are using non property style for making dynamic table
-                final int j = i;
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
+    public static DefaultTableModel buildTableModel(ResultSet rs)
+            throws SQLException {
 
-                resultTable.getColumns().addAll(col);
-                System.out.println("Column ["+i+"] ");
-            }
+        ResultSetMetaData metaData = rs.getMetaData();
 
-            /********************************
-             * Data added to ObservableList *
-             ********************************/
-            while(rs.next()){
-                //Iterate Row
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
-                    //Iterate Column
-                    row.add(rs.getString(i));
-                }
-                System.out.println("Row [1] added "+row );
-                data.add(row);
-
-            }
-
-            //FINALLY ADDED TO TableView
-            resultTable.setItems(data);
-        }catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Error on Building Data");
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
         }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames);
+
     }
 
 

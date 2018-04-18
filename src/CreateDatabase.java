@@ -11,7 +11,7 @@ public class CreateDatabase {
     public CreateDatabase() {
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.66.182:3306/test","root","");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","");
             statement = connection.createStatement();
 
 
@@ -25,17 +25,7 @@ public class CreateDatabase {
         try {
 
             resultSet = statement.executeQuery(query);
-            ResultSet returnResultSet = resultSet;
-            System.out.println("RECORDS FROM DATABASE");
-            while(resultSet.next()){
-                String donorID = resultSet.getString("Donor ID");
-                String bloodtype = resultSet.getString("Blood Type");
-                String Centre = resultSet.getString("Centre");
-                String gender = resultSet.getString("Gender");
-                System.out.println(donorID + " " + Centre + " "+bloodtype + " " + gender);
-
-            }
-            return returnResultSet;
+            return resultSet;
 
         }
         catch (Exception e){

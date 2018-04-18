@@ -1,0 +1,36 @@
+CREATE TABLE Donor(DonorID integer PRIMARY KEY AUTO_INCREMENT, Age integer, Name text, Gender text, Centres text);
+
+/* Create a table called Recipient */
+CREATE TABLE Recipient(RecipientID integer PRIMARY KEY AUTO_INCREMENT, HospitalID integer not null, Age integer, Name text, Gender text);
+
+/* Create a table called Centre */
+CREATE TABLE Centre(CentreID integer PRIMARY KEY AUTO_INCREMENT, Name text, Address text);
+
+CREATE TABLE Blood(BloodID integer PRIMARY KEY AUTO_INCREMENT, DonorID integer not null, RecipientID integer, Quantity real not null, BloodGroup text not null, Price real not null, DonationDate date not null, RecievingDate date);
+
+CREATE TABLE Hospital(HospitalID integer PRIMARY KEY AUTO_INCREMENT, Name text, Address text);
+
+
+INSERT INTO Donor (Age, Name, Gender, Centres) VALUES(19,'Piyush', 'Male', 'A');
+INSERT INTO Donor (Age, Name, Gender, Centres) VALUES(20,'Abhishek', 'Male', 'B');
+INSERT INTO Donor (Age, Name, Gender, Centres) VALUES(32,'Shikha', 'Female', 'A');
+INSERT INTO Donor (Age, Name, Gender, Centres) VALUES(44,'Roma', 'Female', 'A');
+INSERT INTO Donor (Age, Name, Gender, Centres) VALUES(19,'Sana', 'Female', 'B');
+INSERT INTO Donor (Age, Name, Gender, Centres) VALUES(27,'Yashit', 'Male', 'B');
+
+INSERT INTO Recipient (HospitalID, Age, Name, Gender) VALUES(1, 33, 'Gauri', 'Female');
+INSERT INTO Recipient (HospitalID, Age, Name, Gender) VALUES(1, 25, 'Aman', 'Male');
+
+INSERT INTO Centre(Name, Address) VALUES('A', 'Okhla, Phase-II');
+INSERT INTO Centre(Name, Address) VALUES('B', 'HKV, Delhi');
+
+INSERT INTO Hospital(Name, Address) VALUES('Saroj Hospital', "Rohini");
+INSERT INTO Hospital(Name, Address) VALUES('Max Hospital', "Noida");
+
+
+
+INSERT INTO Blood (DonorID, RecipientID, Quantity, BloodGroup, Price, DonationDate, RecievingDate) VALUES(1, 1, 0.80, 'O-', 200, '2017-12-01', '2018-02-03');
+INSERT INTO Blood (DonorID, RecipientID, Quantity, BloodGroup, Price, DonationDate, RecievingDate) VALUES(1, null, 1.00, 'O-', 300, '2018-02-15', null);
+
+INSERT INTO Blood (DonorID, RecipientID, Quantity, BloodGroup, Price, DonationDate, RecievingDate) VALUES(2, 2, 1.50, 'B+', 500, '2017-11-11', '2018-01-31');
+INSERT INTO Blood (DonorID, RecipientID, Quantity, BloodGroup, Price, DonationDate, RecievingDate) VALUES(2, null, 0.50, 'B+', 150, '2017-12-31', null);

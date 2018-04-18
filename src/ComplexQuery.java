@@ -3,13 +3,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
 
 public class ComplexQuery {
 
@@ -19,14 +21,15 @@ public class ComplexQuery {
     public ComboBox avgAgeRecipientCBox;
     public Label outputBox;
     public TableView resultTable;
+    public TextField BloodGroupCBox1;
     CreateDatabase db = new CreateDatabase();
 
-    public void onClickDonorGo(ActionEvent actionEvent) {
+    public void onClickDonorGo(ActionEvent actionEvent) throws SQLException {
         String query = "SELECT Donor.Name as DonorName, SUM(Quantity) from Donor, Blood where Donor.DonorID = Blood.DonorID GROUP BY Blood.DonorID ORDER BY SUM(Quantity) DESC;";
         finalFun(query);
     }
 
-    public void onClickGo1(ActionEvent actionEvent) {
+    public void onClickGo1(ActionEvent actionEvent) throws SQLException {
         if(avgPriceBGroup.getValue() != null)
         {
             String query = "SELECT BloodGroup, AVG(Price) from Blood where BloodGroup = '" + avgPriceBGroup.getValue().toString() + "' GROUP BY BloodGroup;";
@@ -34,15 +37,16 @@ public class ComplexQuery {
         }
     }
 
-    public void onClickGo2(ActionEvent actionEvent) {
-        if(centreComboBox.getValue() != null && BloodGroupCBox.getValue() != null)
+    public void onClickGo2(ActionEvent actionEvent) throws SQLException {
+        if(centreComboBox.getValue() != null && BloodGroupCBox1.getText().compareTo("")!=0)
         {
-            String query = "SELECT B.BloodGroup, B.Quantity, B.Price from Blood B INNER JOIN Donor on B.DonorID = Donor.DonorID where Donor.Centres = '" + centreComboBox.getValue().toString() + "' and B.Price <= " + BloodGroupCBox.getValue().toString() + ";";
+            String query = "SELECT B.BloodGroup, B.Quantity, B.Price from Blood B INNER JOIN Donor on B.DonorID = Donor.DonorID where Donor.Centres = '" + centreComboBox.getValue().toString() + "' and B.Price <= " + BloodGroupCBox1.getText() + ";";
+            System.out.println(query);
             finalFun(query);
         }
     }
 
-    public void onClickGo3(ActionEvent actionEvent) {
+    public void onClickGo3(ActionEvent actionEvent) throws SQLException {
         if(avgAgeRecipientCBox.getValue() != null)
         {
             String query = "SELECT AVG(Recipient.Age) from Recipient, Hospital where Hospital.Name = '" + avgAgeRecipientCBox.getValue().toString() + "' and Hospital.HospitalID = Recipient.HospitalID;";
@@ -50,77 +54,65 @@ public class ComplexQuery {
         }
     }
 
-    public void onClickCountBloodBank(ActionEvent actionEvent) {
+    public void onClickCountBloodBank(ActionEvent actionEvent) throws SQLException {
         String query = "SELECT COUNT(1) as NumberOfBloodSamples from Blood;";
         finalFun(query);
     }
 
 
     public void intialise_combo_box(){
-        String[] listAll = {"Donor","Recipient","Centre","Hospital"};
-        String[] avalaibleB = {"A+","B+","AB-","AB+","O+","O-","B-","A-"};
-        String[] hospitalList = {"Hospital A","Hospital B","Hospital C"};
-        String[] centres = {"Centre A","Centre B","Centre C"};
+        String[] listAll = {null,"Donor","Recipient","Centre","Hospital"};
+        String[] avalaibleB = {null,"A+","B+","AB-","AB+","O+","O-","B-","A-"};
+        String[] hospitalList = {null,"Saroj Hospital","Max Hospital"};
+        String[] centres = {null,"A","B"};
         for(String a : centres)
             centreComboBox.getItems().add(a);
         for(String a : avalaibleB){
             avgPriceBGroup.getItems().add(a);
-            BloodGroupCBox.getItems().add(a);
         }
 
         for(String a : hospitalList)
             avgAgeRecipientCBox.getItems().add(a);
     }
 
-    public void finalFun(String query)
-    {
+    public void finalFun(String query) throws SQLException {
         // do your sorcery here
+
         ResultSet rs = db.getDataFromDB(query);
-        buildData(rs);
+
+        JTable table = new JTable(SimpleQuery.buildTableModel(rs));
+
+        // Closes the Connection
+
+        JOptionPane.showMessageDialog(null, new JScrollPane(table));
     }
-    public void buildData(ResultSet rs){
-
-        ObservableList<ObservableList> data = FXCollections.observableArrayList();
-        try{
 
 
-            /**********************************
-             * TABLE COLUMN ADDED DYNAMICALLY *
-             **********************************/
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
-                //We are using non property style for making dynamic table
-                final int j = i;
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
 
-                resultTable.getColumns().addAll(col);
-                System.out.println("Column ["+i+"] ");
-            }
 
-            /********************************
-             * Data added to ObservableList *
-             ********************************/
-            while(rs.next()){
-                //Iterate Row
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
-                    //Iterate Column
-                    row.add(rs.getString(i));
-                }
-                System.out.println("Row [1] added "+row );
-                data.add(row);
+    public static DefaultTableModel buildTableModel(ResultSet rs)
+            throws SQLException {
 
-            }
+        ResultSetMetaData metaData = rs.getMetaData();
 
-            //FINALLY ADDED TO TableView
-            resultTable.setItems(data);
-        }catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Error on Building Data");
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
         }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames);
+
     }
 }
