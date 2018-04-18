@@ -4,11 +4,10 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import org.controlsfx.control.RangeSlider?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TakeBloodPageController">
+<AnchorPane prefHeight="601.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TakeBloodPageController">
    <children>
       <Label layoutX="40.0" layoutY="147.0" text="Blood Type Wanted" />
       <CheckBox fx:id="BP" layoutX="193.0" layoutY="147.0" mnemonicParsing="false" text="B+" />
@@ -19,17 +18,29 @@
       <CheckBox fx:id="ON" layoutX="479.0" layoutY="147.0" mnemonicParsing="false" text="O-" />
       <CheckBox fx:id="BN" layoutX="540.0" layoutY="147.0" mnemonicParsing="false" text="B-" />
       <CheckBox fx:id="ABN" layoutX="193.0" layoutY="179.0" mnemonicParsing="false" text="AB-" />
-      <Slider fx:id="bloodAgeSlider" layoutX="275.0" layoutY="104.0" prefHeight="18.0" prefWidth="302.0" showTickLabels="true" showTickMarks="true" />
       <Label layoutX="37.0" layoutY="104.0" text="Days Old (Less Than)" />
       <Label layoutX="89.0" layoutY="230.0" text="Centres" />
       <CheckBox fx:id="CentreA" layoutX="194.0" layoutY="230.0" mnemonicParsing="false" text="A" />
       <CheckBox fx:id="CentreB" layoutX="240.0" layoutY="230.0" mnemonicParsing="false" text="B" />
       <CheckBox fx:id="CentreC" layoutX="288.0" layoutY="230.0" mnemonicParsing="false" text="C" />
-      <Label layoutX="80.0" layoutY="70.0" text="Donor Gender" />
+      <Label layoutX="80.0" layoutY="70.0" text="Receiver Gender" />
       <RadioButton fx:id="genderMale" layoutX="271.0" layoutY="70.0" mnemonicParsing="false" text="Male" />
       <RadioButton fx:id="genderFemale" layoutX="394.0" layoutY="70.0" mnemonicParsing="false" text="Female" />
-      <Label layoutX="91.0" layoutY="40.0" text="Donor Age" />
-      <RangeSlider fx:id="donorAge" layoutX="322.0" layoutY="24.0" max="40.0" min="18.0" prefHeight="73.0" prefWidth="255.0" showTickLabels="true" showTickMarks="true" />
-      <Button fx:id="Submit" layoutX="277.0" layoutY="295.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Submit" />
+      <Label layoutX="91.0" layoutY="40.0" text="Reciever Age" />
+      <Button fx:id="Submit" layoutX="317.0" layoutY="524.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Submit" />
+      <TextField layoutX="297.0" layoutY="35.0" />
+      <TextField fx:id="daysOld" layoutX="297.0" layoutY="99.0" />
+      <Label layoutX="84.0" layoutY="269.0" text="Hospitals" />
+      <RadioButton fx:id="hospitalA" layoutX="192.0" layoutY="269.0" mnemonicParsing="false" text="Hospital A" />
+      <RadioButton fx:id="hospitalB" layoutX="314.0" layoutY="269.0" mnemonicParsing="false" text="Hospital B" />
+      <RadioButton fx:id="hospitalC" layoutX="423.0" layoutY="269.0" mnemonicParsing="false" text="Hospital C" />
+      <RadioButton fx:id="newReciever" layoutX="233.0" layoutY="322.0" mnemonicParsing="false" text="New Reciever" />
+      <RadioButton fx:id="existingReceiver" layoutX="368.0" layoutY="322.0" mnemonicParsing="false" text="Existing Receiver" />
+      <Label layoutX="97.0" layoutY="359.0" text="Receiver ID" />
+      <TextField fx:id="receiverID" layoutX="277.0" layoutY="354.0" />
+      <TextField fx:id="nameField" layoutX="277.0" layoutY="402.0" />
+      <Label layoutX="117.0" layoutY="407.0" text="Name" />
+      <Label layoutX="120.0" layoutY="448.0" prefHeight="21.0" prefWidth="40.0" text="Price" />
+      <TextField layoutX="277.0" layoutY="443.0" />
    </children>
 </AnchorPane>

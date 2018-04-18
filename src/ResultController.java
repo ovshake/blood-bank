@@ -14,7 +14,7 @@ public class ResultController implements Initializable {
     }
 
 
-    public viod setLabelText(String text){
+    public void setLabelText(String text){
         finalResult.setText(text);
     }
 }

@@ -7,7 +7,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Layout/LandingPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Layout/LandingPage.fxml"));
+        Parent root = (Parent) loader.load();
+        LandingPage landingPage = loader.getController();
+        landingPage.initialise_toggle();
         primaryStage.setTitle("Hello! Welcome!");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 700, 500));
@@ -16,8 +19,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-//        launch(args);
-        CreateDatabase db = new CreateDatabase();
-        db.getDataFromDB("Hello!");
+        launch(args);
+
     }
 }
