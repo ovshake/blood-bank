@@ -45,7 +45,7 @@ public class LandingPage {
             SimpleQuery simpleQuery = loader.getController();
             simpleQuery.intialise_combo_box();
             stageTheLabelBelongs.setTitle("Simple Query");
-            stageTheLabelBelongs.setScene(new Scene(root, 700, 500));
+            stageTheLabelBelongs.setScene(new Scene(root, 1000, 800));
             stageTheLabelBelongs.show();
         }
         else if(complexQuery.isSelected()){
