@@ -14,6 +14,8 @@ public class LandingPage {
     public RadioButton receiveBlood;
     public Button submit;
     public RadioButton adminButton;
+    public RadioButton simpleQuery;
+    public RadioButton complexQuery;
 
     public void onClickSubmit(ActionEvent actionEvent) throws IOException {
         if(donateBlood.isSelected()){
@@ -36,14 +38,24 @@ public class LandingPage {
             stageTheLabelBelongs.setScene(new Scene(root, 700, 500));
             stageTheLabelBelongs.show();
         }
-        else if(adminButton.isSelected()){
+        else if(simpleQuery.isSelected()){
             Stage stageTheLabelBelongs = (Stage) submit.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Layout/Admin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Layout/SimpleQuery.fxml"));
             Parent root = (Parent) loader.load();
-            Admin admin = loader.getController();
-            admin.initialise_combo_box();
-            stageTheLabelBelongs.setTitle("Admin's Page");
+            SimpleQuery simpleQuery = loader.getController();
+            simpleQuery.intialise_combo_box();
+            stageTheLabelBelongs.setTitle("Simple Query");
             stageTheLabelBelongs.setScene(new Scene(root, 700, 500));
+            stageTheLabelBelongs.show();
+        }
+        else if(complexQuery.isSelected()){
+            Stage stageTheLabelBelongs = (Stage) submit.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Layout/ComplexQuery.fxml"));
+            Parent root = (Parent) loader.load();
+            ComplexQuery complexQuery = loader.getController();
+            complexQuery.intialise_combo_box();
+            stageTheLabelBelongs.setTitle("Complex Query");
+            stageTheLabelBelongs.setScene(new Scene(root, 1000, 800));
             stageTheLabelBelongs.show();
         }
         else{
@@ -56,6 +68,7 @@ public class LandingPage {
         ToggleGroup g = new ToggleGroup();
         donateBlood.setToggleGroup(g);
         receiveBlood.setToggleGroup(g);
-        adminButton.setToggleGroup(g);
+        simpleQuery.setToggleGroup(g);
+        complexQuery.setToggleGroup(g);
     }
 }

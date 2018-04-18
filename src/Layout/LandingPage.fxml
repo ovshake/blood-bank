@@ -9,6 +9,7 @@
       <RadioButton fx:id="donateBlood" layoutX="83.0" layoutY="156.0" mnemonicParsing="false" text="Donate Blood" />
       <RadioButton fx:id="receiveBlood" layoutX="248.0" layoutY="156.0" mnemonicParsing="false" text="Receive Blood" />
       <Button fx:id="submit" layoutX="278.0" layoutY="267.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Go!" />
-      <RadioButton layoutX="402.0" layoutY="156.0" mnemonicParsing="false" text="RadioButton" />
+      <RadioButton fx:id="simpleQuery" layoutX="402.0" layoutY="156.0" mnemonicParsing="false" text="Simple Query" />
+      <RadioButton fx:id="complexQuery" layoutX="237.0" layoutY="200.0" mnemonicParsing="false" text="Complex Query" />
    </children>
 </AnchorPane>
