@@ -10,61 +10,80 @@ import java.sql.ResultSet;
 
 public class TakeBloodPageController {
 
-    public RadioButton genderMale;
-    public RadioButton genderFemale;
-    public CheckBox BP;
-    public CheckBox OP;
-    public CheckBox AP;
-    public CheckBox ABP;
-    public CheckBox AN;
-    public CheckBox ON;
-    public CheckBox BN;
-    public CheckBox ABN;
-    public CheckBox CentreA;
-    public CheckBox CentreB;
-    public CheckBox CentreC;
-    public Button Submit;
-    public TextField daysOld;
+    // public CheckBox BP;
+    // public CheckBox OP;
+    // public CheckBox AP;
+    // public CheckBox ABP;
+    // public CheckBox AN;
+    // public CheckBox ON;
+    // public CheckBox BN;
+    // public CheckBox ABN;
+    
+    // public CheckBox CentreA;
+    // public CheckBox CentreB;
+    // public CheckBox CentreC; 
+    
+    // public TextField daysOld;
+    // public RadioButton newReciever;
+    // public RadioButton existingReceiver;
+    // public TextField receiverID;
+
     public RadioButton hospitalA;
     public RadioButton hospitalB;
-    public RadioButton hospitalC;
-    public RadioButton newReciever;
-    public RadioButton existingReceiver;
-    public TextField receiverID;
+
+    public RadioButton genderMale;
+    public RadioButton genderFemale;
+    public TextField recieverAge;        
     public TextField nameField;
+    public Button Submit;
 
+    public void onClickSubmit(ActionEvent actionEvent)
+    {
+        String query =  "";
+        
+        String name = nameField.getText();
+        String age = recieverAge.getText();
+        String gender = "Male";
+        if(g2.getSelectedToggle().getUserData().toString().compareTo("Female") == 0)
+            gender = "Female";
+        
+        String hid = "1";
+        if(g1.getSelectedToggle().getUserData().toString().compareTo("Max Hospital") == 0)
+            hid = "2";
+        
+        query = "INSERT INTO Recipient (HospitalID, Age, Name, Gender) VALUES("+hid+", "+age+", '"+name+"', '"+gender+"');";
 
-    public void onClickSubmit(ActionEvent actionEvent) {
-        CreateDatabase db = new CreateDatabase();
-
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Layout/Result.fxml"));
-            Parent root = (Parent) loader.load();
-            ResultController resultController = loader.getController();
-            resultController.setLabelText("Result from the query");
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+        String message  = "Your Details were Submitted Successfully.";
+        try
+        {
+            finalFun(query);
         }
-        catch (Exception e){
-            System.out.println("Exception is "+e);
+        catch(Exception e)
+        {
+            message = "Please check the details and try again.";   
         }
-
+        showDialogueBox(message);
     }
 
     public void initialize_toggle(){
         ToggleGroup g1 = new ToggleGroup();
         ToggleGroup g2 = new ToggleGroup();
-        ToggleGroup g3 = new ToggleGroup();
+
         hospitalA.setToggleGroup(g1);
         hospitalB.setToggleGroup(g1);
-        hospitalC.setToggleGroup(g1);
+
         genderMale.setToggleGroup(g2);
         genderFemale.setToggleGroup(g2);
-        newReciever.setToggleGroup(g3);
-        existingReceiver.setToggleGroup(g3);
+        
     }
 
+    public void finalFun(String query) throws SQLException
+    {
+        ResultSet rs = db.getDataFromDB(query);
+    }
 
+        public void showDialogueBox(String message)
+    {
+        // TODO
+    }
 }

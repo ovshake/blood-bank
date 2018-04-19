@@ -12,7 +12,7 @@ public class Main extends Application {
         Parent root = (Parent) loader.load();
         LandingPage landingPage = loader.getController();
         landingPage.initialise_toggle();
-        primaryStage.setTitle("Hello! Welcome!");
+        primaryStage.setTitle("Blood Bank Management System");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 700, 500));
         primaryStage.show();

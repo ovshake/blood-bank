@@ -79,11 +79,6 @@ public class SimpleQuery {
 
     }
 
-
-
-
-
-
     public static DefaultTableModel buildTableModel(ResultSet rs)
             throws SQLException {
 
@@ -109,6 +104,5 @@ public class SimpleQuery {
         return new DefaultTableModel(data, columnNames);
 
     }
-
 
 }
